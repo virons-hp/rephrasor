@@ -53,8 +53,6 @@ const MainInput = () => {
           onChange={(e) => setLanguage(e.target.value)}
         >
           <option value="English">English</option>
-          <option value="Spanish">Spanish</option>
-          <option value="French">French</option>
         </select>
       </div>
 
