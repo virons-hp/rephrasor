@@ -1,6 +1,6 @@
 // import React from "react";
 import Header from "./components/Header";
-import MainInput from "./components/MainInput";
+// import MainInput from "./components/MainInput";
 import Footer from "./components/Footer";
 import MainSection from "./components/MainSection";
 

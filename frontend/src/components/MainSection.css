@@ -1,4 +1,12 @@
 .mainSection{
-    background-color: aqua;
+    /* background-color: aqua; */
     margin-top: 2%;
 }
+
+
+.toolContainerTopSectionButtons button{
+padding: 0.8rem 2rem;
+   border-radius: 20px;
+border-bottom: 2px solid gray;
+
+} 
