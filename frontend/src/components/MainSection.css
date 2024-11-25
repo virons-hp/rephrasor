@@ -1,12 +1,13 @@
 .mainSection{
-    /* background-color: aqua; */
+   
     margin-top: 2%;
 }
 
 
 .toolContainerTopSectionButtons button{
 padding: 0.8rem 2rem;
-   border-radius: 20px;
-border-bottom: 2px solid gray;
+   border-radius: 0.75rem;
+/* border-bottom: 2px solid gray; */
+background:  linear-gradient(145deg, #2f00eb, #02c5be); 
 
 } 

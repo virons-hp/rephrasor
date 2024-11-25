@@ -1,12 +1,12 @@
 
 // import React from "react";
 
-
+import "./header.css"
 
 const Header = () => {
   return (
-    <header className="flex justify-between items-center p-4 bg-white shadow">
-      <h1 className="text-xl font-bold">Paraphraser</h1>
+    <header className="navBar flex justify-between items-center p-4 text-white bg-gray-800 ">
+      <h1 className="text-xl font-bold text-white">Paraphraser</h1>
       <nav>
         <a href="#features" className="px-4">Features</a>
         <a href="#pricing" className="px-4">Pricing</a>

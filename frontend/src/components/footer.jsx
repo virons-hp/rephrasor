@@ -2,7 +2,7 @@
 
 const Footer = () => {
   return (
-    <footer className="mt-10 p-4 bg-gray-800 text-white">
+    <footer className="mt-10 p-4 bg-gray-800 text-white  ">
       <div className="flex justify-between">
         <div>
           <a href="#privacy" className="px-4">Privacy Policy</a>
