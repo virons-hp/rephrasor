@@ -50,13 +50,23 @@ const MainSection = () => {
                   </div>
                 </div>
                 <div className="loaderDiv w-[20%] bg-slate-200 flex flex-col text-center ">
-                  <div className="h-[50%]">
+                  <div className="h-[50%] flex-col flex justify-between">
+                    <div className="">
+                      <div className="select-wrapper">
+                        <select className="styled-select">
+                          <option value="formal">Formal</option>
+                          <option value="informal">Informal</option>
+                          <option value="concise">Concise</option>
+                          <option value="creative">Creative</option>
+                        </select>
+                      </div>
+                    </div>
                     <div className="loader bg-green-800 text-white  ">
                       Loading...
                     </div>
                   </div>
-                  <div className="h-[50%]   py-3 w-full justify-items-end flex ">
-                    <div className="rephraseButtonDiv  w-full h-full    ">
+                  <div className="h-[50%]   py-3 w-full flex items-end ">
+                    <div className="rephraseButtonDiv  w-full     ">
                       {" "}
                       <button
                         type="submit"

@@ -11,3 +11,52 @@ padding: 0.8rem 2rem;
 background:  linear-gradient(145deg, #2f00eb, #02c5be); 
 
 } 
+
+/* Wrapper for select to allow customization */
+.select-wrapper {
+    width: 100%;
+    max-width: 300px;
+    margin: 20px auto;
+    position: relative;
+  }
+  
+  /* Style for the dropdown */
+  .styled-select {
+    width: 100%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #6dd5ed, #2193b0);
+    color: white;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    appearance: none; /* Remove default browser arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  
+  /* Add a down arrow using pseudo-elements */
+  .styled-select::after {
+    content: "▼";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  
+  /* Hover and focus effects */
+  .styled-select:hover,
+  .styled-select:focus {
+    outline: none;
+    background: linear-gradient(135deg, #5dc1e8, #187fa8);
+  }
+  
+  /* Styling the options */
+  .styled-select option {
+    background: white; /* Options will inherit parent style */
+    color: black;
+    font-size: 16px;
+  }
+  
