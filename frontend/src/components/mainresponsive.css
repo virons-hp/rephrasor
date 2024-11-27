@@ -1,0 +1,87 @@
+/* mainresponsive.css */
+
+@media (max-width: 768px) {
+    /* MainSection */
+    .mainSection {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .toolContainer {
+      width: 100%;
+    }
+  
+    .promptContainer {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .inputContainer, .loaderDiv, .outputContainer {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  
+    /* toolContainerTopSectionButtons */
+    .toolContainerTopSectionButtons {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+  
+    .toolContainerTopSectionButtons > div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%; 
+      gap: 10px;
+    }
+  
+    /* inputContainerButtons */
+    .inputContainerButtons {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+  
+    .wordCountDiv, .restButtonDiv {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+    }
+  
+    .wordCountDiv button, .restButtonDiv button {
+      font-size: 0.8em;
+      padding: 8px 12px;
+      text-align: center;
+    }
+  
+    /* Header */
+    .navBar {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .navBar nav {
+      display: none;
+    }
+  
+    .navBar > div {
+      margin-top: 10px;
+    }
+  
+    /* Footer */
+    
+/* General responsive styles */
+@media (max-width: 768px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+  
+  /* Footer styles */
+  
+  
+  }

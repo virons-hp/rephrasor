@@ -1,5 +1,6 @@
 // import React from 'react'
 import "./MainSection.css";
+// import "./mainresponsive.css";
 
 const MainSection = () => {
   // writedown funnctions here
@@ -10,9 +11,7 @@ const MainSection = () => {
         <div className="toolContainer bg-slate-800 w-[85%] shadow-2xl rounded-xl ">
           <div className="toolContainerTopSection p-2">
             <div className="toolContainerTopSectionButtons rounded-t-xl py-4 bg-slate-800  text-white flex flex-row justify-evenly ">
-              <div className=" text-center justify-center align-middle  text-white border-r-gray-500 ">
-                <button type="button">Type:-</button>
-              </div>
+              
               <div className="">
                 <button type="button">Informal</button>
               </div>
@@ -51,19 +50,11 @@ const MainSection = () => {
                 </div>
                 <div className="loaderDiv w-[20%] bg-slate-200 flex flex-col text-center ">
                   <div className="h-[50%] flex-col flex justify-between">
-                    <div className="">
-                      <div className="select-wrapper">
-                        <select className="styled-select">
-                          <option value="formal">Formal</option>
-                          <option value="informal">Informal</option>
-                          <option value="concise">Concise</option>
-                          <option value="creative">Creative</option>
-                        </select>
-                      </div>
-                    </div>
+{/*                     
                     <div className="loader bg-green-800 text-white  ">
                       Loading...
-                    </div>
+                    </div> */}
+
                   </div>
                   <div className="h-[50%]   py-3 w-full flex items-end ">
                     <div className="rephraseButtonDiv  w-full     ">
