@@ -10,6 +10,11 @@ const MainInput = () => {
 
   const handleRephrase = async () => {
     if (!text) return alert("Please enter text to rephrase!");
+    // clear out whitespaces and empty newlines
+    const cleanedText = text.replace(/\s+/g, " ").trim();
+    if (!cleanedText) return alert("Please enter text to rephrase!");
+
+    console.log("Rephrasing text...");
 
     setLoading(true);
     try {
@@ -60,6 +65,7 @@ const MainInput = () => {
         className="mt-4 px-6 py-2 bg-blue-500 text-white rounded"
         onClick={handleRephrase}
         disabled={loading}
+        type="button"
       >
         {loading ? "Rephrasing..." : "Rephrase"}
       </button>
