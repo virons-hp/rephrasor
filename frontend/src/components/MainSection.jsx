@@ -1,14 +1,14 @@
-import React, useState from "react"; 
+import { useState } from "react";
 import axios from "axios";
 import "./MainSection.css";
 import "./mainresponsive.css";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { FaCopy } from "react-icons/fa";
-import { useState } from "react";
+
 
 const MainSection = () => {
   const [text, setText] = useState("");
-  const [tone, setTone] = useState("formal");
+  const [tone, setTone] = useState("formal"); // Track the selected tone
   const [language, setLanguage] = useState("English");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState("");
@@ -33,14 +33,20 @@ const MainSection = () => {
     }
   };
 
-  const handleTranslate = async () => {
+
+
+  const handleTranslate = async (selectedLanguage) => {
     if (!text) return alert("Please enter text to translate!");
+    const cleanedText = text.replace(/\s+/g, " ").trim();
+    if (!cleanedText) return alert("Please enter text to translate!");
+
     setLoading(true);
     try {
       const response = await axios.post("http://localhost:5000/api/translate", {
-        text,
-        targetLanguage: language,
+        text: cleanedText,
+        targetLanguage: selectedLanguage,
       });
+      setLanguage(selectedLanguage);
       setResult(response.data.translatedText);
     } catch (error) {
       alert("Error translating text.");
@@ -52,123 +58,111 @@ const MainSection = () => {
   const handleReset = () => {
     setText("");
     setResult("");
+    setLanguage("English");
   };
 
   const handleCopy = () => {
-    if (!result) {
-      alert("No text available to copy!");
-      return;
-    }
+    if (!result) return alert("No text available to copy!");
     navigator.clipboard
       .writeText(result)
       .then(() => alert("Text copied to clipboard!"))
       .catch(() => alert("Failed to copy text."));
   };
 
-  const countWords = (str) => {
-    const words = str.trim().split(/\s+/);
-    return str.trim() === "" ? 0 : words.length;
-  };
+  const countWords = (str) =>
+    str.trim() === "" ? 0 : str.trim().split(/\s+/).length;
 
   return (
     <section className="mainSection w-full flex justify-center align-middle items-center">
       <div className="toolContainer bg-sky-900 w-[90%] shadow-2xl rounded-xl">
         <div className="toolContainerTopSection p-2">
-          <nav className="bg-sky-900 p-4 justify-center text-center">
-            <div className="container mx-auto flex justify-between items-center text-center">
-              <ul className="flex space-x-6">
-                <li
-                  className="text-white hover:text-gray-300 cursor-pointer"
-                  onClick={() => setLanguage("English")}
-                >
-                  English
-                </li>
-                <li
-                  className="text-white hover:text-gray-300 cursor-pointer"
-                  onClick={() => setLanguage("Spanish")}
-                >
-                  Spanish
-                </li>
-                <li
-                  className="text-white hover:text-gray-300 cursor-pointer"
-                  onClick={() => setLanguage("French")}
-                >
-                  French
-                </li>
-                <li
-                  className="text-white hover:text-gray-300 cursor-pointer"
-                  onClick={() => setLanguage("German")}
-                >
-                  German
-                </li>
-                <li
-                  className="text-white hover:text-gray-300 cursor-pointer"
-                  onClick={() => setLanguage("Korean")}
-                >
-                  Korean
-                </li>
+          <nav className="bg-sky-900 p-4 text-center">
+            <div className="container mx-auto flex justify-center items-center">
+              <ul className="flex space-x-6 py-3">
+                {["English", "Spanish", "French", "German", "Korean", "Hindi"].map(
+                  (lang) => (
+                    <li
+                      key={lang}
+                      onClick={() => handleTranslate(lang.toLowerCase())}
+                      className={`text-white hover:text-green-300 cursor-pointer ${
+                     
+                        language === lang.toLowerCase()
+                        ? "border-b-green-500  border-b-4  text-white"
+                        : "bg-transparent"
+                      } hover:border-b-green-700`}
+                    >
+                      {lang}
+                    </li>
+                  )
+                )}
               </ul>
             </div>
           </nav>
+          <div className="toolContainerTopSectionButtons rounded-t-xl py-2 bg-sky-900 text-white flex justify-evenly">
+            {[ "Formal","Informal", "Creative", "Concise"].map((toneOption) => (
+              <button
+                key={toneOption}
+                type="button"
+                onClick={() => setTone(toneOption.toLowerCase())}
+                className={`py-2 px-4 rounded-lg cursor-pointer ${
+                  tone === toneOption.toLowerCase()
+                    ? "border-b-green-500  border-b-4  text-white"
+                    : "bg-sky-700"
+                } hover:bg-green-700`}
+              >
+                {toneOption}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="toolContainerBottomSection p-2">
           <div className="toolContainerBottomMain p-2 border-2 border-slate-500 rounded-xl">
             <div className="promptContainer flex flex-row gap-4 justify-center">
-              {/* Input Section */}
               <div className="inputContainer w-[50%] bg-slate-200 rounded-b-xl">
                 <textarea
                   className="w-full p-4 border rounded"
-                  placeholder="Enter text"
-                  rows="15"
+                  placeholder="Enter text to rephrase"
+                  rows="12"
                   value={text}
                   onChange={(e) => setText(e.target.value)}
                 ></textarea>
-                <div className="inputContainerButtons w-full flex flex-row gap-2 py-3 px-4 justify-between text-end text-white">
-                  <div className="wordCountDiv py-3 px-8 border-2 border-gray-300 rounded-xl bg-slate-500">
+                <div className="inputContainerButtons flex gap-2 py-3 px-4 justify-between text-end">
+                  <div className="wordCountDiv py-3 px-8 bg-slate-500 rounded-xl text-white">
                     <span className="font-semibold">Words:</span> {countWords(text)}
                   </div>
                   <button
                     onClick={handleRephrase}
-                    type="submit"
-                    className="py-3 px-8 border-2 border-gray-300 rounded-xl bg-slate-500"
+                    className="py-3 px-8 bg-slate-500 rounded-xl text-white"
                   >
                     {loading ? "Processing..." : "Rephrase"}
                   </button>
                   <button
-                    onClick={handleTranslate}
-                    type="button"
-                    className="py-3 px-8 border-2 border-gray-300 rounded-xl bg-slate-500"
-                  >
-                    {loading ? "Processing..." : "Translate"}
-                  </button>
-                  <button
                     type="reset"
                     onClick={handleReset}
-                    className="text-2xl pt-3 pb-1 px-3 border-2 border-gray-300 rounded-xl bg-slate-300 text-black"
+                    className="py-3 px-3 bg-slate-300 rounded-xl text-black text-2xl hover:text-red-800"
                   >
                     <RiDeleteBin5Fill />
                   </button>
                 </div>
               </div>
 
-              {/* Output Section */}
               <div className="outputContainer w-[50%] bg-slate-200 rounded-b-xl">
                 <textarea
                   className="w-full p-4 border rounded"
-                  placeholder="Result"
-                  rows="15"
+                  placeholder="Translated/Rephrased text"
+                  rows="12"
                   value={result}
                   readOnly
                 ></textarea>
-                <div className="outputContainerButtons w-full text-center flex gap-4 py-3 justify-end text-white">
-                  <div className="wordCountDiv py-3 px-8 border-2 border-gray-300 rounded-xl bg-slate-500">
-                    <span className="font-semibold">Words:</span> {countWords(result)}
+                <div className="outputContainerButtons flex gap-4 py-3 justify-end">
+                  <div className="wordCountDiv py-3 px-8 bg-slate-500 rounded-xl text-white">
+                    <span className="font-semibold">Words:</span>{" "}
+                    {countWords(result)}
                   </div>
                   <button
-                    type="button"
+                    className="py-3 px-3 bg-slate-300 rounded-xl text-black text-2xl hover:text-green-800 mr-3"
                     onClick={handleCopy}
-                    className="text-2xl pt-3 pb-1 px-3 border-2 border-gray-300 rounded-xl bg-slate-300 text-black"
                   >
                     <FaCopy />
                   </button>

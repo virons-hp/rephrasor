@@ -3,14 +3,45 @@
   margin-top: 5%;
 }
 
-
-.toolContainerTopSectionButtons button{
+.activeButton{
 padding: 0.8rem 2rem;
  border-radius: 0.75rem;
 /* border-bottom: 2px solid gray; */
-background:  linear-gradient(145deg, #2f00eb, #02c5be); 
+/* background:  linear-gradient(145deg, #2f00eb, #02c5be);  */
+
+border: none;
+cursor: pointer;
+background-color: #152741; /* Default color */
+transition: background-color 0.3s, transform 0.2s;
+
 
 } 
+
+
+.activeButton:hover{
+  
+  background-color: #ccc; /* Hover color */
+  color: black;
+  transform: scale(1.05);
+}
+
+.activeButton.active{
+
+  background-color: #ff9800; /* Active color */
+  color: white;
+  transform: scale(1.1);
+
+}
+
+.active{
+
+  background-color: #ff9800; /* Active color */
+  color: white;
+  transform: scale(1.1);
+
+}
+
+
 
 /* Wrapper for select to allow customization */
 .select-wrapper {
@@ -58,4 +89,22 @@ background:  linear-gradient(145deg, #2f00eb, #02c5be);
   background: white; /* Options will inherit parent style */
   color: black;
   font-size: 16px;
+}
+
+
+
+/* Active button style */
+.custom-button.active {
+  background-color: #ff9800; /* Active color */
+  color: white;
+  transform: scale(1.1);
+}
+
+/* Clicked effect (optional for click feedback) */
+.custom-button:active {
+  background-color: #ff5722; /* Click color */
+}
+
+.click{
+
 }
