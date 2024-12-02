@@ -5,11 +5,10 @@ import "./mainresponsive.css";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { FaCopy } from "react-icons/fa";
 
-
 const MainSection = () => {
   const [text, setText] = useState("");
   const [tone, setTone] = useState("formal"); // Track the selected tone
-  const [language, setLanguage] = useState("English");
+  const [language, setLanguage] = useState("english"); // Ensure lowercase consistency
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState("");
 
@@ -33,8 +32,6 @@ const MainSection = () => {
     }
   };
 
-
-
   const handleTranslate = async (selectedLanguage) => {
     if (!text) return alert("Please enter text to translate!");
     const cleanedText = text.replace(/\s+/g, " ").trim();
@@ -46,7 +43,7 @@ const MainSection = () => {
         text: cleanedText,
         targetLanguage: selectedLanguage,
       });
-      setLanguage(selectedLanguage);
+      setLanguage(selectedLanguage.toLowerCase());
       setResult(response.data.translatedText);
     } catch (error) {
       alert("Error translating text.");
@@ -58,7 +55,7 @@ const MainSection = () => {
   const handleReset = () => {
     setText("");
     setResult("");
-    setLanguage("English");
+    setLanguage("english");
   };
 
   const handleCopy = () => {
@@ -77,38 +74,42 @@ const MainSection = () => {
       <div className="toolContainer bg-sky-900 w-[90%] shadow-2xl rounded-xl">
         <div className="toolContainerTopSection p-2">
           <nav className="bg-sky-900 p-4 text-center">
-            <div className="container mx-auto flex justify-center items-center">
-              <ul className="flex space-x-6 py-3">
-                {["English", "Spanish", "French", "German", "Korean", "Hindi"].map(
-                  (lang) => (
-                    <li
-                      key={lang}
-                      onClick={() => handleTranslate(lang.toLowerCase())}
-                      className={`text-white hover:text-green-300 cursor-pointer ${
-                     
-                        language === lang.toLowerCase()
-                        ? "border-b-green-500  border-b-4  text-white"
-                        : "bg-transparent"
-                      } hover:border-b-green-700`}
-                    >
-                      {lang}
-                    </li>
-                  )
-                )}
+            <div className="container mx-auto flex justify-center items-center ">
+              <ul className="flex space-x-6 py-3 ">
+                {[
+                  "English",
+                  "Spanish",
+                  "French",
+                  "German",
+                  "Korean",
+                  "Hindi",
+                ].map((lang) => (
+                  <li
+                    key={lang}
+                    onClick={() => handleTranslate(lang.toLowerCase())}
+                    className={`px-4 py-2 rounded-lg cursor-pointer ${
+                      language === lang.toLowerCase()
+                        ? "bg-green-500 text-white "
+                        : "bg-transparent text-white hover:text-green-300"
+                    }`}
+                  >
+                    {lang}
+                  </li>
+                ))}
               </ul>
             </div>
           </nav>
           <div className="toolContainerTopSectionButtons rounded-t-xl py-2 bg-sky-900 text-white flex justify-evenly">
-            {[ "Formal","Informal", "Creative", "Concise"].map((toneOption) => (
+            {["Formal", "Informal", "Creative", "Concise"].map((toneOption) => (
               <button
                 key={toneOption}
                 type="button"
                 onClick={() => setTone(toneOption.toLowerCase())}
                 className={`py-2 px-4 rounded-lg cursor-pointer ${
                   tone === toneOption.toLowerCase()
-                    ? "border-b-green-500  border-b-4  text-white"
-                    : "bg-sky-700"
-                } hover:bg-green-700`}
+                    ? "border-b-4 border-green-500 text-white"
+                    : "bg-slate-800 hover:bg-green-700"
+                }`}
               >
                 {toneOption}
               </button>
@@ -129,7 +130,8 @@ const MainSection = () => {
                 ></textarea>
                 <div className="inputContainerButtons flex gap-2 py-3 px-4 justify-between text-end">
                   <div className="wordCountDiv py-3 px-8 bg-slate-500 rounded-xl text-white">
-                    <span className="font-semibold">Words:</span> {countWords(text)}
+                    <span className="font-semibold">Words:</span>{" "}
+                    {countWords(text)}
                   </div>
                   <button
                     onClick={handleRephrase}
