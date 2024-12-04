@@ -135,7 +135,7 @@ const MainSection = () => {
                   </div>
                   <button
                     onClick={handleRephrase}
-                    className="py-3 px-8 bg-slate-500 rounded-xl text-white"
+                    className="py-3 px-8 bg-slate-500 rounded-xl text-white hover:bg-green-600"
                   >
                     {loading ? "Processing..." : "Rephrase"}
                   </button>
@@ -163,7 +163,7 @@ const MainSection = () => {
                     {countWords(result)}
                   </div>
                   <button
-                    className="py-3 px-3 bg-slate-300 rounded-xl text-black text-2xl hover:text-green-800 mr-3"
+                    className="py-3 px-3 bg-slate-300 rounded-xl text-black text-2xl hover:text-green-700 mr-3"
                     onClick={handleCopy}
                   >
                     <FaCopy />
