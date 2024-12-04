@@ -137,7 +137,7 @@ const MainSection = () => {
                     onClick={handleRephrase}
                     className="py-3 px-8 bg-slate-500 rounded-xl text-white hover:bg-green-600"
                   >
-                    {loading ? "Processing..." : "Rephrase"}
+                    {loading ? "Processing... " : "Rephrase"}
                   </button>
                   <button
                     type="reset"
