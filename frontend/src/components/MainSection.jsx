@@ -129,7 +129,7 @@ const MainSection = () => {
                   onChange={(e) => setText(e.target.value)}
                 ></textarea>
                 <div className="inputContainerButtons flex gap-2 py-3 px-4 justify-between text-end">
-                  <div className="wordCountDiv py-3 px-8 bg-slate-500 rounded-xl text-white">
+                  <div className="wordCountDiv py-3 px-8 bg-slate-300 rounded-xl text-black">
                     <span className="font-semibold">Words:</span>{" "}
                     {countWords(text)}
                   </div>
@@ -158,7 +158,7 @@ const MainSection = () => {
                   readOnly
                 ></textarea>
                 <div className="outputContainerButtons flex gap-4 py-3 justify-end">
-                  <div className="wordCountDiv py-3 px-8 bg-slate-500 rounded-xl text-white">
+                  <div className="wordCountDiv py-3 px-8 bg-slate-300 rounded-xl text-black">
                     <span className="font-semibold">Words:</span>{" "}
                     {countWords(result)}
                   </div>
